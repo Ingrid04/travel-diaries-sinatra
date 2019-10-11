@@ -1,0 +1,15 @@
+
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<%=@story.content%>
+
+<a href= "/stories/<%=@story.id%>/edit"> Edit Story </a>
+
+<form action="/stories/<%=@story.id%>" method="post">
+<input id="hidden" type="hidden" name="_method" value="delete">
+
+  <input type="submit" value="Delete">
+</form>
+
