@@ -7,4 +7,5 @@ end
 use Rack::MethodOverride
 use UsersController
 use StoriesController
+use Rack::Flash
 run ApplicationController

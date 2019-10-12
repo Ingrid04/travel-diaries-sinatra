@@ -1,7 +1,30 @@
-<h3> Here is a list of all the travel stories:  </h3>
-<ul> 
+<style>  
+  .travel-heading { 
+  font-size: 30px;
+  background: rgba(255,255,255,.5);
+  width: max-content;
+  text-decoration: underline;
+}
+.stories {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 25px;
+  background: rgba(255,255,255,.5);
+  width: max-content;
+  margin-top: 2px;
+}
+
+
+</style> 
+<h3 class="travel-heading"> Here is a list of all the travel stories:  </h3>
 <br>
+<ol>
 <%@stories.each do |story| %> 
-<li><%=story.content%></li>
+<li class="stories">"<%=story.content%>" - <%=story.user.username%> </li> 
 <%end%>  
-</ul>
+</ol>
+
+<%# <% if flash.has?(:message) %>
+  <%# <%= flash[:message] %>
+<%# <% end %> 
+

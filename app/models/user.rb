@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :stories
-  validates :username, presence: true
-  validates :username, uniqueness: true
+  validates :email, :username, presence: true
+  validates :email, uniqueness: true
 end

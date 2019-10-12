@@ -3,11 +3,12 @@ require "pry"
 class StoriesController < ApplicationController
   get "/stories" do
     # binding.pry
-    current = User.find(session[:user_id])
+    current = User.find_by_id(session[:user_id])
     if current
       @stories = current.stories
       erb :"stories/index"
     else
+      flash[:message] = "You must login to see your stories."
       redirect "/login"
     end
   end
@@ -44,8 +45,9 @@ class StoriesController < ApplicationController
   # FIX THE UPDATE METHOD TO JUST LET THE USER TO EDIT!
 
   patch "/stories/:id" do
-    @user = User.find(session[:user_id])
-    if @user
+    user = Story.find_by_id(params[:id]).user
+    # @story = Story.find_by_id(params[:id])
+    if user.id == current_user.id
       @story = Story.find_by_id(params[:id])
       params.delete("_method")
 
@@ -55,8 +57,8 @@ class StoriesController < ApplicationController
         redirect "/stories/#{@story.id}/edit"
       end
     else
-      @error = "You can not edit this content. You must log in."
-      erb :"stories/show"
+      flash[:message] = "You can not edit other users stories."
+      redirect "/stories"
     end
     # binding.pry
     # if current_user == @story.user
@@ -74,9 +76,15 @@ class StoriesController < ApplicationController
   end
 
   delete "/stories/:id" do
-    @story = Story.find_by_id(params[:id])
-    @story.destroy
+    user = Story.find_by_id(params[:id]).user
+    if user.id == current_user.id
+      @story = Story.find_by_id(params[:id])
+      @story.destroy
 
-    redirect to "/stories"
+      redirect to "/stories"
+    else
+      flash[:message] = "You can not delete this content."
+      redirect "/stories"
+    end
   end
 end

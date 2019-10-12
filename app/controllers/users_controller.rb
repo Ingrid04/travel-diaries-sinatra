@@ -1,8 +1,6 @@
 require "pry"
 
 class UsersController < ApplicationController
-  # before_action :authorized?, except: [:new, :create]
-
   get "/login" do
     erb :"users/login"
   end
@@ -30,13 +28,14 @@ class UsersController < ApplicationController
   end
 
   post "/signup" do
-    @user = User.create(:username => params[:username], :password => params[:password])
+    # binding.pry
+    @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
     # erb :"users/signup"
     if session[:user_id] = @user.id
       redirect "/users/#{@user.id}"
     else
       flash[:message] = "Username already exists"
-      erb :"users/login"
+      # erb :"users/login"
       redirect to "/login"
     end
   end
