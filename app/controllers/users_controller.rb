@@ -18,9 +18,6 @@ class UsersController < ApplicationController
       erb :"users/login"
       redirect to "/signup"
     end
-    # else
-    #   redirect to "/login"
-    # end
   end
 
   get "/signup" do
@@ -52,8 +49,6 @@ class UsersController < ApplicationController
   post "/users" do
     @user = User.create(:username => params[:username], :password => params[:password])
     session[:user_id] = @user.id
-
-    # redirect to "/users/#{@user.id}"
     redirect to "/stories"
   end
 

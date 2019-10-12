@@ -30,8 +30,4 @@ class ApplicationController < Sinatra::Base
       @user = User.find_by_id(session[:user_id])
     end
   end
-
-  # def authorized?
-  #   redirect_to login_path unless logged_in?
-  # end
 end

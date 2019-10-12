@@ -42,7 +42,6 @@ class StoriesController < ApplicationController
     end
   end
 
-  # FIX THE UPDATE METHOD TO JUST LET THE USER TO EDIT!
 
   patch "/stories/:id" do
     user = Story.find_by_id(params[:id]).user
@@ -60,19 +59,7 @@ class StoriesController < ApplicationController
       flash[:message] = "You can not edit other users stories."
       redirect "/stories"
     end
-    # binding.pry
-    # if current_user == @story.user
-    #   @story.update(content: params[:content])
-    # else
-    #   flash[:message] = "You can not edit this content"
-    #   erb :"stories/edit"
-    # end
-    # unless current_user == @story.user
-    #   flash[:message] = "You can not edit this content. You must log in."
-    #   erb :"stories/show"
-    # else
-    #   redirect to "/stories"
-    # end
+
   end
 
   delete "/stories/:id" do
