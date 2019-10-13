@@ -27,12 +27,10 @@ class UsersController < ApplicationController
   post "/signup" do
     # binding.pry
     @user = User.create(:username => params[:username], :email => params[:email], :password => params[:password])
-    # erb :"users/signup"
     if session[:user_id] = @user.id
       redirect "/users/#{@user.id}"
     else
       flash[:message] = "Username already exists"
-      # erb :"users/login"
       redirect to "/login"
     end
   end
