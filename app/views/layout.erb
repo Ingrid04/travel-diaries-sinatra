@@ -58,7 +58,7 @@
 </style>
     <ul>
       <nav>
-      <p style="color:white;"> <strong>  Travel Diaries </strong>| Find amazing stories</p> 
+      <p style="color:white;"> <strong>  Travel Diaries </strong> Find amazing stories</p> 
       <style> p { 
         font-size: 55px;
         text-align: center;
@@ -75,16 +75,47 @@
 
       }
       </style>
+
+      <style> .myButton1 {
+
+    padding: 15px;
+    display: inline-block;
+    color: transparent;
+    text-align:center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    float: left;
+    margin-right: 110px;
+      }
+    .myButton2 {
+
+    padding: 15px;
+    display: inline-block; 
+    color: transparent;
+    text-align:center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    float: left;
+    margin-left: -50px;
+
+} 
+</style>
+
       <br>
         <% if logged_in? %> 
-             <li><a href="/stories/new"> Create a new content</a> </li>
-             <li><a href="/logout"> Log Out</a></li> 
+             <li><a href="/stories/new"> Create a new content</a></li>
+             <li><a href="/logout"> Log Out</a> </li>
               <%# <form action="/logout" method="get">
                <input type="submit" value="Logout">
               </form> %>
              <br>
         <% else %>
-             <li><a href="/login"> Log In</a></li> 
+        <div class="myButton1">
+             <li><a href= "/login"> Log In</a></li> 
+             </div>
+        <div class="myButton2">
              <li><a href="/signup"> Sign Up</a></li> 
              <br> 
         <%end%>

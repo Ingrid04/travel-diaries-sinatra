@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
     if @user && @user.authenticate(params[:password]) #authenticate password digest to match the real password
       session[:user_id] = @user.id
-      # line 21 session is the login line after checking all the lines above.
+      # line 12 session is the login line after checking all the lines above.
 
       redirect to "/stories"
     else

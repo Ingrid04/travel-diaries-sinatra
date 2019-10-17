@@ -8,7 +8,7 @@ class StoriesController < ApplicationController
       @stories = current.stories
       erb :"stories/index"
     else
-      flash[:message] = "You must login to see your stories."
+      flash[:message] = "You must log in to see your stories."
       redirect "/login"
     end
   end
@@ -42,7 +42,6 @@ class StoriesController < ApplicationController
     end
   end
 
-
   patch "/stories/:id" do
     user = Story.find_by_id(params[:id]).user
     # @story = Story.find_by_id(params[:id])
@@ -59,7 +58,6 @@ class StoriesController < ApplicationController
       flash[:message] = "You can not edit other users stories."
       redirect "/stories"
     end
-
   end
 
   delete "/stories/:id" do
